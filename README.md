@@ -4,7 +4,7 @@
 <img src="https://raw.githubusercontent.com/chadolbaegi/pichan/main/posts.png" width="400"> 
 <img src="https://raw.githubusercontent.com/chadolbaegi/pichan/main/comments.png" width="400"> 
 <img src="https://raw.githubusercontent.com/chadolbaegi/pichan/main/blips.png" width="400">
-<img src="https://raw.githubusercontent.com/chadolbaegi/pichan/main/preview.png" width="400">
+<img src="https://raw.githubusercontent.com/chadolbaegi/pichan/main/forum.png" width="400">
 
 
 
