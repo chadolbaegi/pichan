@@ -163,7 +163,7 @@ input[type=button],
     background: rgba(255, 255, 255, 0.8) !important;
     outline: none !important;
     border: none !important;
-    padding: 0.25em !important;
+/*     padding: 0.25em !important; */
     backdrop-filter: blur(0.25em) !important;
 }
 
@@ -204,7 +204,7 @@ input[type=button],
     --primary-color: #FFF !important;
     --secondary-color: #EBEBEB !important;
     --accent: #2cc990 !important;
-    --darker: #4b7d99 !important;
+    --darker: #4b9699 !important;
 }
 
 /* DO NOT TOUCH BELOW THIS POINT */
@@ -463,13 +463,10 @@ header > #nav > menu:nth-of-type(2) {
     background-color: var(--card-bg) !important;
 }
 
-header#top menu.main li.current {
-    background: var(--accent) !important;
-}
 
 header#top menu.main li.current a {
     color: #fff !important;
-    background: none !important;
+    background: var(--accent) !important;
 }
 
 header#top menu li a {
@@ -483,12 +480,16 @@ header#top menu li a {
 }
 
 header#top menu li {
-    padding: 0.55em !important;
+    flex:1 !important;
+}
+
+header#top menu li a {
+    padding: 1em 1.5em !important;
     flex: 1 1 auto !important;
     text-align: center;
 }
 
-header#top menu li:hover {
+header#top menu li a:hover {
     background: var(--secondary-color) !important;
     cursor: pointer;
     transition: background 200ms, color 200ms;
@@ -504,7 +505,7 @@ header#top menu li:hover a {
     transition: background 200ms, color 200ms;
 }
 
-#nav menu li {
+#nav menu li a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -512,6 +513,11 @@ header#top menu li:hover a {
 
 header#top menu form {
     display: flex;
+}
+
+#nav > menu:nth-child(2) > li:nth-child(1) > form {
+    padding:0 !important;
+    margin:0 !important;
 }
 
 /* FOOTER */
@@ -609,7 +615,12 @@ a[rel=prev] {
     font-size: 0.8em;
 }
 
-#mode-box,
+#mode-box > form:not(#new_comment):not(.edit_forum_topic):not(.edit_forum_post) {
+    display:block !important;
+    background:none !important;
+    padding:0 !important;
+}
+
 #related-box,
 #ad-leaderboard {
     display: none !important;
@@ -643,10 +654,14 @@ a[rel=prev] {
     border-radius: 0 !important;
 }
 
-#posts-container article .desc,
-#c-favorites #posts .desc,
-.post-preview .desc {
-    display: none;
+.desc {
+/*     display: none; */
+    background:var(--card-bg) !important;
+        padding:0.25em !important;
+}
+
+.desc span:first-child {
+    margin-left:0 !important;
 }
 
 #nav-links-top,
@@ -660,6 +675,17 @@ div#c-posts div#a-show .set-nav {
     color: transparent;
 }
 
+body.c-posts.a-show #new_comment > div.input.text.optional {
+    margin-bottom:-0.25em !important;
+} 
+
+div#c-posts div.notice.notice-pending {
+    border:var(--darker) !important;
+}
+
+#image-and-nav .pool-name {
+    font-weight:bold !important;
+}
 
 /* PAGINATOR */
 .paginator {
@@ -829,33 +855,6 @@ body > div.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front.ui-dragg
     margin-top:1.5em;
 }
 
-/* 
-table.striped thead tr, table.table thead tr, div#c-post-versions div#a-index .pv-label {
-    background-color:#232528 !important;
-    padding:1em !important;
-}
-
-table.striped tbody tr, table.table tbody tr {
-    background-color:var(--card-bg-2) !important;
-    border:none;
-}
-
-table.striped tbody tr:nth-child(2n), table.table tbody tr:nth-child(2n) {
-    background-color:var(--card-bg) !important;
-    border:none;
-}
-
-table.striped th, table.table th {
-    padding:0.75em 0.3em !important;
-    font-family:'Whitney Black' !important;
-    font-size:1.2em;
-}
-
-table.striped td, table.table td {
-    font-size:1.1em;
-}
- */
-
 .author-name a {
     color:#dadde3 !important;
     transition:color 200ms;
@@ -936,16 +935,17 @@ div#c-comments div#a-index .comment-post .comments {
 }
 
 a[rel=nofollow].dtext-link {
-    color:#dadde3 !important;
+    color:var(--darker) !important;
+    font-family:'whitney book' !important;
 }
 
 .styled-dtext blockquote br {
     line-height:100em !important;;
 }
 
-.comment-post-grid .content-menu li:nth-of-type(2n) {
+/* .comment-post-grid .content-menu li:nth-of-type(2n) {
     display:none !important;
-}
+} */
 
 .comment-post-grid .content-menu li {
     text-transform:lowercase;
@@ -978,6 +978,7 @@ a[rel=nofollow].dtext-link {
     transition: background 200ms;
 }
 
+
 .simple_form.edit_comment, #new_blip {
     display:flex;
     flex-flow:row wrap;
@@ -986,7 +987,15 @@ a[rel=nofollow].dtext-link {
     flex-grow:1 !Important;
 }
 
-#new_blip textarea, #new_blip > div.input.text.optional, #new_blip .dtext-previewable {
+body.a-new #c-blips #a-new form > input:not([type=hidden]) {
+    max-width:49% !important;
+}
+
+body.a-new #c-blips #a-new form > input[type=submit] {
+    flex-basis:75% !important;
+}
+
+#new_blip textarea, #new_blip > div.input.text.optional {
     width:100% !important;
 }
 
@@ -1037,12 +1046,14 @@ a[rel=nofollow].dtext-link {
     margin-right:0 !important;
 }
 
-#comment_do_not_bump_post {
-    margin-bottom:0.25em !important;
+#c-comments > #a-index form.edit_comment > input:not([type=hidden]) {
+    max-width:100% !important;
 }
 
-#comment_do_not_bump_post {
-    margin-right:0.75em;
+#new_comment > div.input.boolean.optional.comment_do_not_bump_post > label {
+    display:flex;
+    flex-flow:column wrap !important;
+    align-items:center !important;
 }
 
 div#c-explore-posts a.desc {
@@ -1159,7 +1170,7 @@ a.user-member.with-style {
     color:var(--accent) !important;
 }
 
-.box.user-favorites .vertical-section {
+.vertical-section {
     margin-top:1em !important;
     flex-flow:row wrap !important;
 }
@@ -1175,9 +1186,12 @@ a.user-member.with-style {
 
 /* AUTOCOMPLETE */
 .ui-widget-content {
-    background:var(--card-bg-2) !important;
+    background:var(--card-bg) !important;
     outline:none !important;
     border:none !important;
+}
+
+.ui-autocomplete {
     padding:0.25em !important;
 }
 
@@ -1208,28 +1222,96 @@ a.user-member.with-style {
 .forum-post blockquote a[rel=nofollow].dtext-link {
     line-height:initial !important;
 }
+
+/* TICKETS */
+#c-tickets .section table tbody tr {
+    display:flex;
+    flex-flow:row wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:1em !important;
+}
+#c-tickets .section table tbody tr > td:first-of-type > span {
+    font-family:'whitney semibold' !important;
+}
+#c-tickets .section table tbody tr p {
+    margin:0 !important;
+}
+
+/* TAKEDOWNS */
+#c-takedowns h2:first-of-type {
+    margin-bottom:0.5em;
+}
+#c-takedowns .box-section {
+    background: rgba(37, 55, 61, 0.9) !important;
+}
+#c-takedowns table tr:not(:nth-child(3)) > td:first-child {
+    padding-right:1em !important;
+    font-family:'whitney semibold' !important;
+}
+
+/* USER PROFILE */
+body.c-users.a-show #c-users #a-show .profile-container .about-section {
+    margin-top:2em;
+}
+
+body.c-users.a-show #c-users #a-show .profile-container .about-section .box-section {
+    background-color:var(--card-bg) !important;
+}
+
+.posts-section .blacklist {
+    margin-top:2em !important;
+}
+
+#a-show h2 > a {
+    color:#999 !important;
+}
+
+div#c-users div#a-show .posts-section .posts, div#c-users div#a-show div.bottom-section{
+    display:flex;
+    flex-flow:row wrap !important;
+    flex:0 !important;
+}
+
+#a-show div.box.user-favorites, #a-show .user-uploads, .profile-container  div.posts-section, .profile-container div.about-section {
+    flex-basis:100% !important;
+    width:100% !important;
+}
+
+#a-show .profile-container .about-piece, #a-show .profile-container .about-section {
+    margin:0 !important;
+}
 }
 
 @-moz-document url-prefix("https://e621.net/") {
 /* FORMS & TABLES */
-#nav > menu > li:not([id]):not(first-of-type) {
+#nav > menu > li:not([id]):not(:nth-child(1)) {
     display: none !important;
 }
 
 form {
     background: rgba(37, 55, 61, 0.9) !important;
-    min-width: 50% !important margin:0 auto !important margin-top:0.7em !important;
+    min-width: 50% !important;
+    margin: 0 auto !important;
+    margin-top: 0.7em !important;
 }
 
-form:not(#new_comment):not(.edit_forum_topic) {
+form:not(#new_comment):not(.edit_forum_topic):not(.edit_forum_post) {
     display: flex !important;
     flex-flow: row wrap !important;
     justify-content: space-between !important;
-    align-items: start !important;
     background: rgba(37, 55, 61, 0.9) !important;
     width: 100%;
     padding: 1.5em !important;
     gap: 1.5em;
+}
+
+body.a-index form:not(#new_comment):not(.edit_forum_topic) {
+    align-items: flex-end !important;
+}
+
+body.a-new form:not(#new_comment):not(.edit_forum_topic):not(#new_bulk_update_request) {
+    align-items: flex-start !important;
 }
 
 form label {
@@ -1241,6 +1323,10 @@ form label {
     height:auto !important;
 }
  */
+form .dtext-previewable {
+    width: 100%;
+}
+
 form textarea,
 form select,
 form input,
@@ -1254,10 +1340,8 @@ form input,
     transition: background 200ms, color 200ms;
     max-width: 100% !important;
     width: 100% !important;
-}
-
-form .dtext-previewable {
-    width: 100%;
+    font-size: 1em !important;
+    /*     height: 100% !important; */
 }
 
 form input:focus,
@@ -1277,10 +1361,6 @@ form textarea:focus,
     margin: 0 !important;
 }
 
-.simple_form input.dtext-preview-button {
-    width:100% !important;
-}
-
 input[type=submit],
 input[type=button],
 .edit-submit input[type=submit] {
@@ -1292,11 +1372,10 @@ input[type=button],
     border: 3px solid transparent !important;
     transition: border-color 200ms;
     outline: none !important;
-    width: 50% !important;
-    height: 100% !important;
     justify-content: center !important;
     align-items: center !important;
-    margin:0 !important;
+    margin: 0 !important;
+    height: 100% !important;
 }
 
 input[type=submit]:hover,
@@ -1306,30 +1385,29 @@ input[type=button]:hover,
     transition: border-color 200ms;
 }
 
-input[type=submit] {
-    flex-basis: 100%;
+input[type=submit],
+#a-gallery > table > tbody > tr:nth-child(8) > td > input[type=submit] {
+    max-width: 10em !important;
 }
 
-.search_any_name_matches {
-    flex-basis: 30% !important;
-}
-
-.simple_form .input {
+.simple_form > * {
     flex: 1;
 }
 
 .simple_form .hint {
-    max-width: 100% !important;
+    /*     max-width: 100% !important; */
+    display: none !important;
 }
 
 
+/* tags search */
 /* posts search */
 aside#sidebar > #search-box form {
-    padding:0 !important;
+    padding: 0 !important;
 }
 
 #blacklist-collapse::before {
-    font-size:0.5em !important;
+    font-size: 0.5em !important;
 }
 
 /* comments search */
@@ -1337,22 +1415,15 @@ body.c-comments .search_creator_name {
     flex-basis: 30% !important;
 }
 
+
 /* new entry and edit form */
 body.a-new .simple_form textarea {
     min-height: 5em !important;
 }
 
-.new_artist textarea, .new_bulk_update_request textarea {
-    height:5em !important;
-}
-
-body.a-new .simple_form input {
-    height: 6em !important;
-}
-
-body.a-new input.dtext-preview-button,
-body.a-edit input.dtext-preview-button {
-    flex-basis: 100%;
+.new_artist textarea,
+.new_bulk_update_request textarea {
+    height: 5em !important;
 }
 
 body.a-edit .edit_artist > p {
@@ -1360,6 +1431,25 @@ body.a-edit .edit_artist > p {
     font-family: 'whitney black' !important;
     flex-basis: 100% !important;
     margin: 0 !important;
+}
+
+body.a-edit .edit_artist > .input:nth-child(n+4) {
+    flex-basis: 49% !important;
+}
+
+body.a-edit .edit_artist > input,
+body.a-new #new_artist > input {
+    flex-basis: 49% !important;
+    max-width: 100% !important;
+}
+
+body.a-new #new_artist > .input:nth-child(2),
+body.a-new #new_artist > .input:nth-child(3) {
+    flex-basis: 25% !important;
+}
+
+body.a-new #new_artist > .input:nth-child(n+4) {
+    flex-basis: 50% !important;
 }
 
 /* blips */
@@ -1386,7 +1476,8 @@ body.a-edit .edit_artist > p {
     overflow-wrap: anywhere !important;
 }
 
-article.blip h6, .content-menu a {
+article.blip h6,
+.content-menu a {
     color: #999 !important;
 }
 
@@ -1403,12 +1494,9 @@ article.blip h6 {
 }
 
 /* pools */
-#c-pools input,
-#c-pools select,
-#c-pools .input,
-#c-pools .search tr td {
+table.aligned-vertical td,
+table.search td {
     width: 100% !important;
-    flex-basis: 100% !important;
 }
 
 #c-pools .search {
@@ -1424,7 +1512,7 @@ article.blip h6 {
     width: 100%;
     flex: 1;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-end;
     height: 10vh !important;
 }
 
@@ -1432,8 +1520,39 @@ article.blip h6 {
     gap: 1em;
 }
 
-#a-gallery > table > tbody > tr:nth-child(8) {
+#new_pool .pool_name {
     flex-basis: 100% !important;
+}
+
+#new_pool > .input:nth-child(3),
+#new_pool > .input:nth-child(4) {
+    flex-basis: 49% !important;
+}
+
+#new_pool > .input:nth-child(3) textarea,
+#new_pool > .input:nth-child(4) textarea {
+    min-height: 14em !important;
+    resize: both !important;
+    overflow: auto !important;
+}
+
+#new_pool > .pool_category,
+#new_pool > .pool_is_active {
+    flex: 0;
+    flex-basis: 10% !important;
+}
+
+#new_pool > input {
+    flex-basis: 35% !important;
+}
+
+#new_pool > *:nth-child(n+5):not(:nth-child(6)) {
+    align-self: flex-end !important;
+}
+
+#new_pool > *:nth-child(6) {
+    align-self: center !important;
+    margin-top: 1.5em !important;
 }
 
 /* pools listings */
@@ -1467,10 +1586,6 @@ article.blip h6 {
     display: none;
 }
 
-#c-pools .search tr:last-of-type input {
-    height: 10vh !important;
-}
-
 #c-pools #a-index .striped tbody {
     width: 100%;
     flex-flow: row wrap !important;
@@ -1500,13 +1615,14 @@ form.simple_form div.input.boolean label {
 }
 
 /* tag alias */
-body.c-tag-alias-requests #a-new > form > div:nth-child(5) {
-    align-items: center !important;
-    margin-top: 2em !important;
+body.c-tag-alias-requests #a-new > form > div:nth-child(5) > input {
+    flex-basis: 49% !important;
+    max-width: 100% !important;
 }
 
-body.c-tag-alias-requests #a-new > form > div:nth-child(5) input {
-    width: 100% !important;
+body.c-tag-alias-requests #a-new > form > div:nth-child(5) {
+    flex-flow: row nowrap !important;
+    justify-content: space-between !important;
 }
 
 /* sets */
@@ -1535,8 +1651,44 @@ body.c-tag-alias-requests #a-new > form > div:nth-child(5) input {
 }
 
 /* editing post */
+body.c-posts.a-show #edit #tags-container > div:nth-child(2), body.c-posts.a-show #edit #tags-container > div:nth-child(3) {
+    width:100% !important;
+}
+
+#post_tag_string {
+    font-family:Consolas,Andale Mono WT,Andale Mono,Lucida Console,Lucida Sans Typewriter,DejaVu Sans Mono,Bitstream Vera Sans Mono,Liberation Mono,Nimbus Mono L,Monaco,Courier New,Courier,monospace !important;
+    
+}
+
+body.c-posts.a-show #edit #form > div:nth-child(n+11), div#c-posts div#a-show #edit .edit-submit {
+    flex:1 !important;
+}
+
+#iqdb-similar {
+    display:none !important;
+}
+
+body.c-posts.a-show #edit #form > div:nth-child(14), body.c-posts.a-show #edit #form > div:nth-child(13){
+    flex-basis:100% !important;
+}
+
+body.c-posts.a-index #quick-edit-div form > .input {
+    flex-flow:row wrap !important;
+    gap:0.5em !important;
+}
+
+body.c-posts.a-index #quick-edit-div form > .input > input {
+    max-width:100% !important;
+    flex:1 !important;
+}
+
 #tags-container,
-#form > div:nth-child(11), #form > div:nth-child(12), #form > div:nth-child(13), #form > div:nth-child(14), #form > div:nth-child(16), #form > div.edit-submit.input > input {
+#form > div:nth-child(11),
+#form > div:nth-child(12),
+#form > div:nth-child(13),
+#form > div:nth-child(14),
+#form > div:nth-child(16),
+#form > div.edit-submit.input > input {
     flex-basis: 100% !important;
     width: 100%;
 }
@@ -1550,95 +1702,125 @@ div.related-item {
 }
 
 div.related-tags .tag-active {
-    background: var(--accent) !important;
+    background: rgba(255,255,255,0.2) !important;
     padding: 0.25em;
 }
 
-#form > div:nth-child(11) {
+div#c-posts div#a-show #form > div:nth-child(11) {
     flex-flow: row nowrap;
+    align-items:center;
+    margin-top:2em !important;
+    gap:1em !important;
+}
+
+div#c-posts div#a-show form.simple_form div.input fieldset {
+    gap:1em !important;
+}
+
+div#c-posts div#a-show form.simple_form div.input fieldset label {
+    margin:0 !important;
 }
 
 body.c-posts #form > div:nth-child(11) > fieldset {
     display: flex;
     flex-flow: row nowrap;
-    align-items:center;
+    align-items: center;
 }
 
 body.c-posts #form fieldset input[type=radio] {
     width: 1em !important;
     height: 1em !important;
-    margin-right:0.5em !important;
+    margin-right: 0.5em !important;
 }
 
 div#c-posts div#a-show #edit .edit-submit {
-    background:none !important;
-    position:relative !important;
-    padding:0 !important;
-    margin-top:1em !important;
+    background: none !important;
+    position: relative !important;
+    padding: 0 !important;
+    margin-top: 0.5em !important;
+    max-width:10em !important;
+    align-self:flex-end !important;
 }
 
 div#c-posts div#a-show #edit .edit-submit input {
-    width:100% !important;
+    width: 100% !important;
+    height:100% !important;
 }
 
 #form > div:nth-child(16) {
-    margin-top:-1.5em !important;
+    margin-top: -1.5em !important;
 }
 
 /* account settings */
-
-#edit-options, #basic-settings-section {
-    flex-basis:100% !important;
-    margin:0 !important;
+#edit-options,
+#basic-settings-section {
+    flex-basis: 100% !important;
+    margin: 0 !important;
 }
 
 /* ticket */
 #new_ticket > div:nth-child(5) {
-    width:100% !important;
+    width: 100% !important;
 }
 
-#new_forum_topic > .forum_topic_title, #new_forum_topic > div.input.text.optional {
-    flex-basis:100%;
+#new_forum_topic > .forum_topic_title,
+#new_forum_topic > div.input.text.optional {
+    flex-basis: 100%;
 }
 
 #forum_topic_title {
-    height:3em !important;
+    height: 3em !important;
 }
 
 #new_forum_topic #forum_post_body_for_ {
-    font-size:1em !important;
+    font-size: 1em !important;
 }
 
 /* request alias */
-
-body.c-tag-alias-requests #a-new > form > div:nth-child(2), body.c-tag-alias-requests #a-new > form > div:nth-child(3), body.c-tag-implication-requests #a-new > form > div:nth-child(2), body.c-tag-implication-requests #a-new > form > div:nth-child(3) {
-    flex-basis:49%;
+body.c-tag-implication-requests #a-new > form > div:nth-child(5) > input {
+    flex-basis: 49% !important;
+    max-width: 100% !important;
 }
 
-body.c-tag-alias-requests #a-new > form > div:nth-child(2) input, body.c-tag-alias-requests #a-new > form > div:nth-child(3) input {
-    height:3em !important;
+body.c-tag-implication-requests #a-new > form > div:nth-child(5) {
+    flex-flow: row nowrap !important;
+    justify-content: space-between !important;
 }
 
-body.c-tag-implication-requests #a-new > form > div:nth-child(4), #a-new > form > div:nth-child(4) > div, body.c-tag-alias-requests #a-new > form > div:nth-child(4), #a-new > form > div:nth-child(4) > div {
-    flex-basis:100%;
-    width:100%;
+body.c-tag-implication-requests #a-new > form > div:nth-child(4),
+#a-new > form > div:nth-child(4) > div,
+body.c-tag-alias-requests #a-new > form > div:nth-child(4),
+#a-new > form > div:nth-child(4) > div {
+    flex-basis: 100%;
+    width: 100%;
 }
 
 #tag_alias_request_reason {
-    font-size:1em !important;
+    font-size: 1em !important;
 }
 
 body.c-tag-alias-requests #a-new > form > div:nth-child(5) {
-    margin:0 !important;
+    margin: 0 !important;
 }
 
-/* request implication */
-
-body.c-tag-implication-requests #a-new > form > div:nth-child(5) > input {
-    width:100% !important;
+/* bulk update request */
+#new_bulk_update_request {
+    align-items: flex-start!important;
+}
+#new_bulk_update_request > .bulk_update_request_title {
+    flex-basis:100% !important;
 }
 
-/* edit forum topic */
+#new_bulk_update_request > .input:nth-child(n+3), #new_bulk_update_request > .input:nth-child(n+5) {
+    flex-basis:49% !important;
+}
+
+#new_bulk_update_request > input {
+    align-self:flex-end !important;
+}
+
+
+/* forum edit & post */
 div.list-of-forum-posts article div.content-menu .edit_forum_topic {
     flex-flow: row wrap !important;
     justify-content: space-between !important;
@@ -1649,15 +1831,247 @@ div.list-of-forum-posts article div.content-menu .edit_forum_topic {
     gap: 1.5em;
 }
 
-.edit_forum_topic > div.input.text.optional, #topic-response .new_forum_post div.input.text.optional, #a-new form.new_forum_post > div.input.text.optional {
-    flex-basis:100% !Important;
+.edit_forum_post {
+    flex-flow: row wrap !important;
+}
+
+.edit_forum_topic > div.input.text.optional,
+#topic-response .new_forum_post div.input.text.optional,
+#a-new form.new_forum_post > div.input.text.optional {
+    flex-basis: 100% !important;
+}
+
+body.a-show .forum-post form.edit_forum_post > div {
+    flex-basis: 100% !important;
+    flex-shrink: 0 !important;
+}
+
+body.a-show .forum-post form.edit_forum_post > input:nth-child(n+4),
+.new_forum_topic > input {
+    flex-basis: 49% !important;
+    max-width: 100% !important;
+}
+
+/* forum search & comments search */
+body.a-search #c-forum-posts form.simple_form,
+body.a-search #c-comments form.simple_form,
+.edit_tag {
+    align-items: flex-end !important;
 }
 
 /* new message */
 .new_dmail div.input.text.optional {
+    flex-basis: 100% !important;
+}
+
+/* metasearch */
+#c-meta-searches form input:first-child {
+    flex: 1 !important;
+}
+
+/* add to pool */
+.ui-dialog-title, .ui-dialog[aria-describedby=add-to-set-dialog] {
+    text-transform:uppercase !important;
+    font-family:'whitney black' !important;
+}
+.ui-button {
+    border:none !important;
+    border-radius:0 !important;
+    transition:background 200ms;
+}
+
+.ui-button:hover {
+    box-shadow:none !important;
+    background:var(--accent) !important;
+    transition:background 200ms;
+}
+
+#add-to-pool-dialog > form:not(#new_comment):not(.edit_forum_topic):not(.edit_forum_post), .ui-dialog[aria-describedby=add-to-set-dialog] .simple_form {
+    background:none !important;
+    margin:0 !important;
+}
+
+#add-to-pool-dialog > form > div:nth-child(2) {
     flex-basis:100% !important;
 }
 
+#add-to-pool-dialog > form  #pool-name-container {
+    width:100% !important;
+    font-size:1.25em !important;
+}
+
+#add-to-pool-dialog > form > div:nth-child(3) > input[type=submit] {
+    min-width:100% !important;
+}
+
+.ui-dialog[aria-describedby=add-to-set-dialog] .simple_form {
+    display:flex;
+    align-items:flex-end;
+    flex-flow:row nowrap;
+    gap:1em;
+}
+
+#add-to-set-id {
+    padding: 1em;
+    border-radius: 0 !important;
+    background: var(--card-bg-2) !important;
+    color: var(--secondary-color) !important;
+    width: 100% !important;
+    font-size: 1em !important;
+}
+
+#add-to-set-dialog > div > div:nth-child(1) > label {
+    font-family: 'whitney semibold' !important;
+    text-transform:capitalize;
+}
+
+#add-to-set-submit {
+    padding: 0.88em !important;
+    text-transform: uppercase !important;
+    font-family: 'Whitney Black' !important;
+    background: var(--card-bg-2) !important;
+    color: var(--secondary-color) !important;
+    border: 3px solid transparent !important;
+    transition: border-color 200ms;
+    outline: none !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    width:100% !important;
+}
+
+#add-to-set-submit:hover {
+    border-color: var(--accent) !important;
+    transition: border-color 200ms;
+}
+
+.ui-dialog[aria-describedby=add-to-set-dialog] .simple_form > .input {
+    flex-basis:50% !important;
+}
+
+/* add note */
+.note-edit-dialog {
+    padding-bottom:1.5em !important;
+}
+body.mode-translation .note-edit-dialog .ui-dialog-content {
+    padding:1.5em !important;
+}
+body.mode-translation .note-edit-dialog textarea {
+    width:100% !important;
+    padding: 1em;
+    border-radius: 0 !important;
+    box-sizing: border-box;
+    background: var(--card-bg-2) !important;
+    color: var(--secondary-color) !important;
+    transition: background 200ms, color 200ms;
+    max-width: 100% !important;
+    font-size: 1.25em !important;
+}
+
+body.mode-translation .note-edit-dialog textarea:focus {
+    background: var(--card-bg) !important;
+    transition: background 200ms;
+}
+
+body.mode-translation .note-edit-dialog .ui-dialog-buttonpane {
+    display:flex !important;
+    justify-content:center !important;
+    align-items:center !important;
+    flex-flow:row nowrap !important;
+    padding:0 !important;
+    margin:0 !important;
+    width:100% !important;
+}
+
+body.mode-translation .note-edit-dialog .ui-dialog-buttonpane button[type=button] {
+    text-transform: uppercase !important;
+    font-family: 'Whitney Black' !important;
+    background: var(--card-bg-2) !important;
+    color: var(--secondary-color) !important;
+    border: 3px solid transparent !important;
+    transition: border-color 200ms;
+    outline: none !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    flex:1 !important;
+}
+
+/* flag post */
+.flag-dialog-body .styled-dtext h3 {
+    padding-top:0.25em;
+}
+
+#new_post_flag:not(#new_comment):not(.edit_forum_topic):not(.edit_forum_post) {
+/*     flex-flow:column wrap !important; */
+    align-items:flex-start !important;
+    justify-content:flex-start !important;
+}
+
+#new_post_flag > * {
+    flex:0 !important;
+}
+#new_post_flag input[type=radio] {
+    flex-basis:3% !important;
+}
+
+#new_post_flag label {
+    flex-basis:90% !important;
+}
+
+#new_post_flag > div.input.integer.optional.post_flag_parent_id {
+    flex-basis:100% !important;
+}
+
+#new_post_flag > div:nth-child(26) > input[type=submit], #new_post_flag > div:nth-child(26) {
+    max-width:100% !important;
+    flex-basis:100% !important;
+}
+
+/* post ticket */
+#new_ticket .section {
+    flex-basis:100% !important;
+}
+
+#new_ticket .section:first-of-type {
+    display:flex;
+    flex-flow:column wrap;
+    gap:0.5em;
+}
+
+#new_ticket select, #new_ticket textarea, #new_ticket .section {
+    width:100% !important;
+}
+
+#new_ticket > input {
+    flex-basis:49% !important;
+    max-width:100% !important;
+}
+
+/* new takedown */
+#new_takedown > .section {
+    flex-basis:100% !important;
+}
+
+
+#new_takedown div.input.boolean label, #new_takedown div.input.boolean label input, #new_takedown div.input.boolean label {
+    margin:0 !important;
+}
+
+#new_takedown div.input.boolean label {
+    display:flex;
+    align-items:center;
+}
+
+#new_takedown #takedown_reason_hidden {
+    width:auto !important;
+    margin-right:0.5em !important;
+}
+
+#new_takedown > input.btn {
+    flex-basis:100% !important;
+    max-width:100% !important;
+}
 /* TABLES */
 table.striped,
 #p-standard-listing {
@@ -1711,7 +2125,7 @@ menu#text {
 
 }
 
-@-moz-document url-prefix("https://e621.net/"), url-prefix("https://e621.net/wiki_page") {
+@-moz-document url-prefix("https://e621.net/") {
 /* WIKI & HELP */
 
 .styled-dtext blockquote h4 {
@@ -1728,10 +2142,19 @@ menu#text {
     border-right:0;
     border-bottom:0;
     border-color:var(--accent) !important;
+    cursor:pointer;
 }
 
-.styled-dtext blockquote, .styled-dtext div.expandable, .styled-dtext pre {
+.styled-dtext blockquote, .styled-dtext pre {
     padding:1em 0em 1em 1em !important;
+}
+
+.expandable-content {
+    padding:1em !important;
+}
+
+.styled-dtext div.expandable div.expandable-header {
+    padding:1em;
 }
 
 .styled-dtext blockquote, .simple_form.edit_comment, .styled-dtext pre {
@@ -1746,11 +2169,6 @@ menu#text {
 #wiki-page-title a, h5 a {
     font-size:1.5em !important;
     font-family:'Whitney Black' !important;
-}
-
-#wiki-page-body a, .styled-dtext a {
-    color:#999 !important;
-     transition:color 200ms;
 }
 
 #wiki-page-body a:hover, .styled-dtext a:hover, .dtext-color-species {
